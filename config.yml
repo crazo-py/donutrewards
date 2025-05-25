@@ -1,0 +1,89 @@
+YAML:
+database:
+  type: sqlite  # Change to "mysql" for MySQL support
+  sqlite:
+    file: "dailyrewards.db"
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "dailyrewards"
+    username: "root"
+    password: "password"
+
+messages:
+  prefix: "&d&lDaily &8» "
+  reward_received: "&aYou received: %item%"
+  no_permission: "&cYou do not have permission to use this command."
+  reload_success: "&aDailyRewards config reloaded successfully."
+  already_claimed: "&cYou have already claimed your daily rewards. Wait for %time%."
+  reminder: "&aDon't forget to claim your daily reward! &2Use /daily to claim."
+  reset_success: "&aSuccessfully reset the daily reward cooldown for %player%."
+  reset_notification: "&aYour daily reward cooldown has been reset by an admin."
+  help:
+    - '&f'
+    - '&a&lDAILY REWARDS'
+    - '&f'
+    - '&f/daily &7- Opens the main Daily Rewards Menu.'
+    - '&f/dailyhelp &7- Shows this message.'
+    - '&f/dailyreset <player> &7- Resets the daily reward for the player.'
+    - '&f/dailyreload &7- Reloads the plugin.'
+    - '&f'
+
+notification:
+  interval: 3600  # Interval in seconds between notifications (e.g., 3600 seconds = 1 hour)
+
+gui:
+  daily:
+    title: "&aDaily Rewards"
+    size: 27
+    items:
+      daily_reward:
+        material: CHEST
+        name: "&aDaily Rewards"
+        lore:
+          - "&7Click to claim your daily reward!"
+        slot: 11
+      already_claimed:
+        material: BARRIER
+        name: "&cAlready Claimed - %time%"
+        lore:
+          - "&7You have already claimed your daily rewards."
+          - "&7Come back in %time%."
+        slot: 11
+      preview:
+        material: BOOK
+        name: "&bRewards Preview"
+        lore:
+          - "&7Click to preview possible rewards"
+        slot: 15
+  claim:
+    title: "&aDaily Rewards"
+    size: 27
+  preview:
+    title: "&aRewards Preview"
+    size: 27
+
+rewards:
+  items:
+    '1':
+      name: '&a$100 Money'
+      material: EMERALD
+      lore: []
+      chance: 50
+      commands:
+        - eco give %player_name% 100
+    '2':
+      name: '&a$200 Money'
+      material: EMERALD
+      lore: []
+      chance: 30
+      commands:
+        - eco give %player_name% 200
+    '3':
+      name: '&a$500 Money &b[Bonus Cash!]'
+      material: DIAMOND
+      lore:
+        - '&fEnjoy some &bBonus Cash&f!'
+      chance: 20
+      commands:
+        - eco give %player_name% 500
